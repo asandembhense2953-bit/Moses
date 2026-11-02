@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moses & Sons Photography | Timeless Moments, Expertly Captured</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --black: #0b0b0c;
+            --panel: #17171a;
+            --panel-light: #1f1f23;
+            --hairline: rgba(245, 241, 231, 0.12);
+            --gold: #c9a24a;
+            --gold-soft: #e3c884;
+            --cream: #f6f1e7;
+            --white: #ffffff;
+            --muted: #a8a49a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--cream);
+            background: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.2px;
+        }
+
+        a { color: inherit; }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+            display: inline-block;
+        }
+
+        img { display: block; max-width: 100%; }
+
+        /* ============ HEADER ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 26px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.4s ease, padding 0.35s ease, background-color 0.35s ease;
+            background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        header.hide-nav {
+            transform: translateY(-110%);
+        }
+
+        header.scrolled {
+            padding: 16px 6%;
+            background-color: rgba(11, 11, 12, 0.92);
+            border-bottom: 1px solid var(--hairline);
+            backdrop-filter: blur(6px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span { color: var(--gold); font-style: italic; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 38px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.2px;
+            text-transform: none;
+            font-weight: 400;
+            color: var(--cream);
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover { color: var(--gold-soft); }
+        nav ul li a:hover::after { width: 100%; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            height: 100vh;
+            min-height: 640px;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://i.postimg.cc/85gqCNYq/hero-photographer.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11,11,12,0.12) 0%, rgba(11,11,12,0.02) 30%, rgba(11,11,12,0.65) 78%, rgba(11,11,12,0.88) 100%);
+            z-index: 1;
+        }
+
+        .hero-bottom-row {
+            position: absolute;
+            left: 6%;
+            right: 6%;
+            bottom: 64px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+        }
+
+        .hero-content { max-width: 620px; }
+
+        .hero-content h1 {
+            font-size: 3.6rem;
+            line-height: 1.08;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-side {
+            max-width: 300px;
+            text-align: left;
+            padding-bottom: 6px;
+        }
+
+        .hero-side p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .hero-cta { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 28px;
+            background-color: var(--cream);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--cream);
+        }
+
+        .btn:hover { background: transparent; color: var(--cream); }
+        .btn i { font-size: 0.75rem; }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--cream);
+            border: 1px solid var(--hairline);
+        }
+
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold-soft); }
+
+        /* ============ THE CIRCLE (signature element) ============ */
+        .circle-row {
+            position: relative;
+            z-index: 20;
+            margin-top: -78px;
+            padding: 0 6% 90px;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+
+        .circle-row .circle-label {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-right: 10px;
+        }
+
+        .circle-btn {
+            width: 108px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .circle-thumb {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--hairline);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .circle-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .circle-btn span {
+            font-size: 0.7rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .circle-btn:hover .circle-thumb,
+        .circle-btn.active .circle-thumb {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .circle-btn:hover span,
+        .circle-btn.active span { color: var(--gold-soft); }
+
+        /* ============ SECTION BASE ============ */
+        .section { padding: 130px 6%; position: relative; }
+        .section-tight { padding-top: 60px; }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-head h2 {
+            font-size: 2.6rem;
+            max-width: 560px;
+            line-height: 1.15;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            max-width: 360px;
+        }
+
+        /* ============ ABOUT ============ */
+        .about {
+            background: var(--panel);
+            border-top: 1px solid var(--hairline);
+            border-bottom: 1px solid var(--hairline);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-portrait { position: relative; }
+
+        .about-portrait .frame {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .about-portrait .frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .badge-award {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .badge-award strong { font-size: 1.8rem; line-height: 1; }
+        .badge-award span {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 4px;
+            max-width: 90px;
+        }
+
+        .about-text h3 {
+            font-size: 2.1rem;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            max-width: 520px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 50px;
+            margin: 36px 0 36px;
+        }
+
+        .about-stats div strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            color: var(--gold-soft);
+        }
+
+        .about-stats div span {
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ============ SERVICES ============ */
+        .services-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: flex-start;
+        }
+
+        .services-list { border-top: 1px solid var(--hairline); }
+
+        .service-row {
+            display: flex;
+            align-items: baseline;
+            gap: 26px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--hairline);
+            cursor: default;
+            transition: padding-left 0.3s ease;
+        }
+
+        .service-row:hover { padding-left: 12px; }
+
+        .service-row .num {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1rem;
+            min-width: 34px;
+        }
+
+        .service-row h3 {
+            font-size: 1.4rem;
+            min-width: 220px;
+        }
+
+        .service-row p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .services-image {
+            position: sticky;
+            top: 120px;
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .services-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ============ GALLERY ============ */
+        .gallery { background: var(--panel); border-top: 1px solid var(--hairline); }
+
+        .gallery-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: none;
+            border: 1px solid var(--hairline);
+            border-radius: 100px;
+            color: var(--muted);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--black);
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            height: 280px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: saturate(0.92);
+        }
+
+        .gallery-item:hover img { transform: scale(1.08); }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11,11,12,0) 40%, rgba(11,11,12,0.85) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+        .gallery-item-overlay span {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--gold-soft);
+        }
+
+        /* ============ LIGHTBOX ============ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(11,11,12,0.96);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active { opacity: 1; pointer-events: all; }
+
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
+        .lightbox-content img { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; border-radius: 4px; }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: var(--cream);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--hairline);
+            color: var(--cream);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* ============ BOOKING ============ */
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 0;
+            background: var(--panel-light);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--hairline);
+        }
+
+        .booking-side {
+            background: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80') center/cover;
+            position: relative;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .booking-side::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11,11,12,0.2) 0%, rgba(11,11,12,0.9) 100%);
+        }
+
+        .booking-side * { position: relative; z-index: 1; }
+        .booking-side h3 { font-size: 1.8rem; margin-bottom: 14px; }
+        .booking-side p { color: var(--muted); }
+
+        .booking-form-wrap { padding: 60px; }
+
+        .booking-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .booking-form .form-group { margin-bottom: 20px; }
+
+        .booking-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 13px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--hairline);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .booking-form select option { background: var(--panel-light); }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+
+        .booking-form textarea { min-height: 90px; resize: vertical; }
+
+        .booking-form button {
+            margin-top: 10px;
+            padding: 16px 40px;
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 100px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .booking-form button:hover { background: var(--gold-soft); }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .testimonial-card {
+            background: var(--panel);
+            border: 1px solid var(--hairline);
+            border-radius: 8px;
+            padding: 36px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .testimonial-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+
+        .stars { color: var(--gold); margin-bottom: 20px; font-size: 0.95rem; letter-spacing: 3px; }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author { font-weight: 700; color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+        .testimonial-event { color: var(--gold-soft); font-size: 0.78rem; margin-top: 4px; letter-spacing: 0.5px; }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background-color: var(--black);
+            border-top: 1px solid var(--hairline);
+            padding: 90px 6% 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span { color: var(--gold); font-style: italic; }
+
+        .footer-about p { color: var(--muted); margin-bottom: 24px; max-width: 340px; }
+
+        .footer-links h3, .footer-contact h3 {
+            font-size: 0.78rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-soft);
+            margin-bottom: 22px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+        }
+
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links ul li a { color: var(--muted); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem; }
+        .footer-links ul li a:hover { color: var(--gold-soft); }
+
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 16px; gap: 12px; }
+        .contact-item i { color: var(--gold); margin-top: 3px; }
+        .contact-item a { color: var(--muted); text-decoration: none; }
+        .contact-item a:hover { color: var(--gold-soft); }
+
+        .social-links { display: flex; margin-top: 22px; gap: 10px; }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--hairline);
+            border-radius: 50%;
+            color: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover { background-color: var(--gold); border-color: var(--gold); color: var(--black); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--hairline);
+        }
+
+        .footer-tagline { color: var(--gold-soft); font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 12px; }
+        .copyright { font-size: 0.82rem; color: var(--muted); }
+
+        /* Footer credit styling */
+        .site-credit {
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .site-credit a {
+            color: var(--gold-soft);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 700;
+        }
+
+        .site-credit a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        /* ============ SOCIAL FLOAT ============ */
+        .social-float {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            color: var(--white);
+            font-size: 1.4rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .social-float a:hover { transform: translateY(-5px); }
+        .whatsapp-float { background-color: #25D366; }
+        .facebook-float { background-color: #3b5998; }
+
+        /* ============ ANIMATIONS ============ */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3rem; }
+            .hero-side { display: none; }
+            .about-content { grid-template-columns: 1fr; }
+            .services-layout { grid-template-columns: 1fr; }
+            .services-image { position: static; margin-top: 30px; aspect-ratio: 16/9; }
+            .booking-layout { grid-template-columns: 1fr; }
+            .booking-side { padding: 40px; min-height: 220px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 78%;
+                height: 100vh;
+                background-color: rgba(11,11,12,0.97);
+                border-left: 1px solid var(--hairline);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.35s ease;
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: center; gap: 30px; }
+            .hero-bottom-row { bottom: 40px; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .circle-row { justify-content: center; margin-top: -60px; padding-bottom: 60px; }
+            .circle-thumb { width: 68px; height: 68px; }
+            .section { padding: 90px 6%; }
+            .section-head h2 { font-size: 2rem; }
+            .about-stats { gap: 30px; }
+            .service-row { flex-wrap: wrap; }
+            .booking-form .form-row { grid-template-columns: 1fr; }
+            .booking-form-wrap { padding: 40px 30px; }
+            .gallery-container { grid-template-columns: 1fr; }
+        }
+
+        /* Mobile responsiveness for credit */
+        @media (max-width: 600px) {
+            .copyright {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+            }
+            
+            .site-credit {
+                margin-top: 2px;
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <a href="#home" class="logo">Moses &amp; <span>Sons</span></a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-bottom-row">
+            <div class="hero-content">
+                <h1>Capturing Life's<br>Beautiful Moments</h1>
+                <div class="hero-cta">
+                    <a href="#gallery" class="btn">Explore Work <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="hero-side">
+                <p>Through the lens, I capture the essence of every moment, transforming ordinary scenes into extraordinary memories that last a lifetime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Circle : signature element / gallery filter -->
+    <div class="circle-row" id="circleRow">
+        <span class="circle-label">What we shoot —</span>
+        <button class="circle-btn active" data-filter="all">
+            <span class="circle-thumb"><img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="All work"></span>
+            <span>All Work</span>
+        </button>
+        <button class="circle-btn" data-filter="wedding">
+            <span class="circle-thumb"><img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wedding"></span>
+            <span>Wedding</span>
+        </button>
+        <button class="circle-btn" data-filter="graduation">
+            <span class="circle-thumb"><img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Graduation"></span>
+            <span>Graduation</span>
+        </button>
+        <button class="circle-btn" data-filter="birthday">
+            <span class="circle-thumb"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Birthday"></span>
+            <span>Birthday</span>
+        </button>
+        <button class="circle-btn" data-filter="ceremony">
+            <span class="circle-thumb"><img src="https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Ceremony"></span>
+            <span>Ceremony</span>
+        </button>
+    </div>
+
+    <!-- About -->
+    <section class="section about" id="about">
+        <div class="about-content">
+            <div class="about-portrait">
+                <div class="frame">
+                    <img src="https://i.postimg.cc/85gqCNYq/hero-photographer.png" alt="Moses & Sons behind the lens">
+                </div>
+                <div class="badge-award">
+                    <strong>10+</strong>
+                    <span>Years Behind the Lens</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <span class="eyebrow">About the Studio</span>
+                <h3>Crafting art through photography, one family at a time</h3>
+                <p>With years of expertise, Moses &amp; Sons Photography transforms moments into lifelong treasures. Our personalised approach ensures every shot reflects your unique story.</p>
+                <p>Founded on the principles of excellence and creativity, we combine technical mastery with artistic vision to deliver photographs that stand the test of time — whether it's a wedding, graduation, or special celebration.</p>
+                <div class="about-stats">
+                    <div><strong>500+</strong><span>Events Captured</span></div>
+                    <div><strong>4.9</strong><span>Average Rating</span></div>
+                    <div><strong>3</strong><span>Sons, One Studio</span></div>
+                </div>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Services Offered</span>
+                <h2>We're giving the best solution for your celebrations</h2>
+            </div>
+            <p>From the ceremony to the last dance, we cover every angle so you never have to ask "who's taking the photo?"</p>
+        </div>
+        <div class="services-layout">
+            <div class="services-list">
+                <div class="service-row">
+                    <span class="num">01</span>
+                    <h3>Wedding Photoshoots</h3>
+                    <p>Classic and candid coverage of your special day, from ceremony to reception.</p>
+                </div>
+                <div class="service-row">
+                    <span class="num">02</span>
+                    <h3>Graduation Portraits</h3>
+                    <p>Celebrate academic milestones with portraits that showcase your achievement.</p>
+                </div>
+                <div class="service-row">
+                    <span class="num">03</span>
+                    <h3>Birthday &amp; Events</h3>
+                    <p>Joyful, dynamic storytelling of your celebrations, laughter and all.</p>
+                </div>
+                <div class="service-row">
+                    <span class="num">04</span>
+                    <h3>Ceremonies</h3>
+                    <p>Cultural and traditional elegance captured with respect and artistry.</p>
+                </div>
+            </div>
+            <div class="services-image">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Wedding photography detail">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section gallery" id="gallery">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Portfolio</span>
+                <h2>Our Gallery</h2>
+            </div>
+            <p>A small selection of moments we've been trusted to capture.</p>
+        </div>
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="wedding">Wedding</button>
+            <button class="filter-btn" data-filter="graduation">Graduation</button>
+            <button class="filter-btn" data-filter="birthday">Birthday</button>
+            <button class="filter-btn" data-filter="ceremony">Ceremony</button>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-item" data-category="wedding">
+                <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding couple dancing">
+                <div class="gallery-item-overlay"><span>Wedding</span></div>
+            </div>
+            <div class="gallery-item" data-category="wedding">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding ring ceremony">
+                <div class="gallery-item-overlay"><span>Wedding</span></div>
+            </div>
+            <div class="gallery-item" data-category="wedding">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bride and groom portrait">
+                <div class="gallery-item-overlay"><span>Wedding</span></div>
+            </div>
+            <div class="gallery-item" data-category="wedding">
+                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding venue decoration">
+                <div class="gallery-item-overlay"><span>Wedding</span></div>
+            </div>
+            <div class="gallery-item" data-category="graduation">
+                <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Graduate throwing cap">
+                <div class="gallery-item-overlay"><span>Graduation</span></div>
+            </div>
+            <div class="gallery-item" data-category="graduation">
+                <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Graduate with diploma">
+                <div class="gallery-item-overlay"><span>Graduation</span></div>
+            </div>
+            <div class="gallery-item" data-category="graduation">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Group graduation photo">
+                <div class="gallery-item-overlay"><span>Graduation</span></div>
+            </div>
+            <div class="gallery-item" data-category="graduation">
+                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Graduate portrait">
+                <div class="gallery-item-overlay"><span>Graduation</span></div>
+            </div>
+            <div class="gallery-item" data-category="birthday">
+                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Birthday cake celebration">
+                <div class="gallery-item-overlay"><span>Birthday</span></div>
+            </div>
+            <div class="gallery-item" data-category="birthday">
+                <img src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Birthday party decorations">
+                <div class="gallery-item-overlay"><span>Birthday</span></div>
+            </div>
+            <div class="gallery-item" data-category="birthday">
+                <img src="https://images.unsplash.com/photo-1549589237-9e70b6be4da8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids birthday party">
+                <div class="gallery-item-overlay"><span>Birthday</span></div>
+            </div>
+            <div class="gallery-item" data-category="birthday">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Adult birthday celebration">
+                <div class="gallery-item-overlay"><span>Birthday</span></div>
+            </div>
+            <div class="gallery-item" data-category="ceremony">
+                <img src="https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Traditional ceremony">
+                <div class="gallery-item-overlay"><span>Ceremony</span></div>
+            </div>
+            <div class="gallery-item" data-category="ceremony">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cultural ceremony">
+                <div class="gallery-item-overlay"><span>Ceremony</span></div>
+            </div>
+            <div class="gallery-item" data-category="ceremony">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Religious ceremony">
+                <div class="gallery-item-overlay"><span>Ceremony</span></div>
+            </div>
+            <div class="gallery-item" data-category="ceremony">
+                <img src="https://images.unsplash.com/photo-1580480099945-6b8a1f5d9b0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Ceremony procession">
+                <div class="gallery-item-overlay"><span>Ceremony</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img src="" alt="" id="lightboxImage">
+            <div class="lightbox-nav">
+                <button id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+                <button id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking -->
+    <section class="section" id="booking">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Reserve Your Date</span>
+                <h2>Book a Photoshoot</h2>
+            </div>
+            <p>Tell us about your event and we'll be in touch within 24 hours to confirm.</p>
+        </div>
+        <div class="booking-layout">
+            <div class="booking-side">
+                <h3>We'd love to hear your story</h3>
+                <p>Every family, every ceremony, every milestone has its own rhythm — tell us yours.</p>
+            </div>
+            <div class="booking-form-wrap">
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event">Event Type</label>
+                            <select id="event" name="event" required>
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="graduation">Graduation</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="ceremony">Ceremony</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Special Requests</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit">Send Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" id="testimonials">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Kind Words</span>
+                <h2>What our clients are saying</h2>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">Moses & Sons captured our wedding day perfectly. Every photo tells a story and brings back the emotions of that special day. Outstanding professionalism.</p>
+                <p class="testimonial-author">Sabelo &amp; Thandi</p>
+                <p class="testimonial-event">Wedding Client, 2023</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">The graduation photos they took of me are absolutely stunning! They made me feel comfortable and captured my personality perfectly. Highly recommend!</p>
+                <p class="testimonial-author">Nomsa</p>
+                <p class="testimonial-event">Graduation Client, 2024</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★½</div>
+                <p class="testimonial-text">We've used Moses & Sons for three family events now, and they never disappoint. The photos from my mother's 60th birthday are treasures we'll cherish forever.</p>
+                <p class="testimonial-author">The Dlamini Family</p>
+                <p class="testimonial-event">Birthday Clients, 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="#" class="footer-logo">Moses &amp; <span>Sons</span></a>
+                <p>Professional photography services specialising in weddings, graduations, birthdays, and ceremonies. Capturing your precious moments with artistry and excellence.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#booking">Book a Session</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:+27631311216">063 131 1216</a></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:info@mosesandsonsphoto.com">info@mosesandsonsphoto.com</a></div>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>[Studio Address]</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-tagline">"Izandla Ziyagezana"</p>
+            <p class="copyright">
+                &copy; 2024 Moses &amp; Sons Photography. All Rights Reserved.
+                <span class="site-credit">| Site by <a href="https://asande-mbhense.vercel.app/" target="_blank" rel="noopener noreferrer">Asande Mbhense</a></span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Social Float -->
+    <div class="social-float">
+        <a href="https://wa.me/27631311216" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="facebook-float" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect: adds background once past hero, hides on scroll down, reveals on scroll up
+        const header = document.getElementById('header');
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            header.classList.toggle('scrolled', currentScrollY > 80);
+
+            if (currentScrollY > lastScrollY && currentScrollY > 160 && !nav.classList.contains('active')) {
+                header.classList.add('hide-nav');
+            } else {
+                header.classList.remove('hide-nav');
+            }
+            lastScrollY = currentScrollY;
+        });
+
+        // Shared filter logic (circle row + pill filters both drive the gallery)
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const circleBtns = document.querySelectorAll('.circle-btn');
+
+        function applyFilter(filter) {
+            filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+            circleBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+            galleryItems.forEach(item => {
+                item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+            });
+        }
+
+        filterBtns.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+        circleBtns.forEach(btn => btn.addEventListener('click', () => {
+            applyFilter(btn.dataset.filter);
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }));
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        let currentImageIndex = 0;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentImageIndex = index;
+                lightboxImage.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.getElementById('lightboxPrev').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentImageIndex].src;
+        });
+
+        document.getElementById('lightboxNext').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentImageIndex].src;
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Booking form
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(bookingForm);
+            console.log('Form submitted:', Object.fromEntries(formData));
+            alert('Thank you for your enquiry! We will contact you shortly to confirm your booking.');
+            bookingForm.reset();
+        });
+
+        // Scroll reveal
+        const fadeElements = document.querySelectorAll('.fade-in');
+        function checkScroll() {
+            fadeElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('visible');
+            });
+        }
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.length < 2) return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
